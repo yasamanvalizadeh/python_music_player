@@ -216,11 +216,6 @@ class MusicPlayer:
         # self.list_of_song.bind('<<ListboxSelect>>' , self.fillout)
         
 
-        
-        
-        
-        
-        
 
     def add_song(self):
         self.filedialog=filedialog.askopenfilenames()
