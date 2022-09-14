@@ -1,3 +1,16 @@
+"""
+author: 'Yasaman Valizadeh'
+
+-------------------------
+
+Music Player App
+-------------------------
+
+Python GUI app using tkinter.
+program needs to be run from command line/ terminal.
+"""
+
+
 import re
 from tkinter import *
 from tkinter import ttk
@@ -101,7 +114,6 @@ class MusicPlayer:
         self.list_of_song_scrollbar=Scrollbar(self.mother_label ,orient= VERTICAL , command= self.list_of_song.yview)
         self.list_of_song_scrollbar.pack(side= RIGHT , fill= Y)
 
-
         self.fav_list_butten=Button(self.root ,  image=self.fav_list_image, command=self.favorite_song_list , bg='white' , relief= FLAT )
         self.fav_list_butten.place(x=20 , y=370)
 
@@ -156,11 +168,9 @@ class MusicPlayer:
         self.current_song_label=Label(self.root , text= 'Song: (0 / 0)' , fg='black' , background='white')
         self.current_song_label.place(x=290 , y=435)
         
-        
         self.pic_song_label=Label(self.root ,  bg= 'white' )
         self.pic_song_label.place(x=110 , y=130)
 
-        
         self.musicplayer_title=Label(self.root ,image=self.font_image , bg= 'white')
         self.musicplayer_title.place(x=70 , y=20 )
 
@@ -216,7 +226,6 @@ class MusicPlayer:
         # self.list_of_song.bind('<<ListboxSelect>>' , self.fillout)
         
 
-
     def add_song(self):
         self.filedialog=filedialog.askopenfilenames()
         for song in self.filedialog:
@@ -262,7 +271,6 @@ class MusicPlayer:
        mixer.music.play()
        self.scale_update()
 
-    
     def check_pause_play(self):
         if self.list_of_song.size() >=1 :
             self.play_list.append(self.list_of_song.get(ACTIVE))
@@ -277,7 +285,6 @@ class MusicPlayer:
                 self.play_list.append(self.list_of_song.get(ACTIVE))
                 self.play_song()
 
-
     def puase_unpause(self):
         if self.list_of_song.size() >=1 :
             if not self.pause_mode:
@@ -291,7 +298,6 @@ class MusicPlayer:
                 self.pause_mode=False
                 mixer.music.unpause()
                 self.scale_update()
-
 
     def scale_update(self):
         if self.song_scalebar['value'] < self.song_lenght:
@@ -309,12 +315,10 @@ class MusicPlayer:
             self.time_elapsed_label['text']='00:00'
             self.song_scalebar['value']=0
             self.play_button.config(image=self.play_image)
-
-            
+  
     def scalebar_move(self,x):
         self.root.after_cancel(self.updater)
         
-
         present_position_scalbar=self.song_scalebar.get()
         current_song=self.list_of_song.get(ACTIVE)
 
@@ -345,12 +349,7 @@ class MusicPlayer:
             if self.fav_mood:
                 self.fav_mood = False
                 self.favorite_button.config(image= self.favorite_off_image)
-        
-
-
-
-
-
+                
     def previous_song(self):
         if self.list_of_song.size() >=1 :
             mixer.music.stop()
@@ -371,9 +370,6 @@ class MusicPlayer:
                 self.fav_mood = False
                 self.favorite_button.config(image= self.favorite_off_image)
         
-        
-
-       
     def repeat(self):
         if self.repeat_mode == 0:
             self.repeat_button.config(image=self.repeat_on_image)
@@ -411,7 +407,6 @@ class MusicPlayer:
                 self.shuffle_mode=False
                 self.shuffle_button.config(image=self.shuffle_off_image)
 
-
     def favorite_song(self):
         if not self.fav_mood:
             self.favorite_button.config(image=self.favorite_on_image)
@@ -437,13 +432,10 @@ class MusicPlayer:
 
             for i in self.fav_song_list:
                 self.fav_song_listbox.insert(END , i)
-
-            
+   
         else:
             self.fav_song_list_mode= False
             self.label.pack_forget()
-        
-            
 
     def delet_song(self , name):
         self.root.after_cancel(self.updater)
@@ -460,7 +452,6 @@ class MusicPlayer:
             self.song_scalebar['value']=0
             self.play_button.config(image=self.play_image)
 
-
     def set_volum(self , x):
         mixer.music.set_volume(self.scalebar_volume.get())
         self.current_volume=mixer.music.get_volume()
@@ -472,7 +463,6 @@ class MusicPlayer:
         else:
             self.volume_butten.config(image= self.speaker_image)
         
-    
     def mute_unmute(self):
         if not self.mute_mode:
             mixer.music.set_volume(0.0)
@@ -504,13 +494,13 @@ class MusicPlayer:
         #         if typed.lower() in item.lower():
         #             self.list_of_song.insert(END,item)
 
-
     # def fillout(self):
     #     self.search_box_entry.delete('0',END)
     #     self.search_box_entry.insert(END,self.list_of_song.get(ACTIVE))
     
     
-
+    
+    
 
 if __name__== '__main__':
 
